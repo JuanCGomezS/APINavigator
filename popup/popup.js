@@ -61,6 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const sendBtn = document.querySelector("#send-btn");
   const resultDiv = document.querySelector("#result");
   const loadingDiv = document.querySelector('#loading');
+  const copyButton = document.querySelector('#copy');
 
   sendBtn.addEventListener("click", async (event) => {
     //loadingDiv.style.display = 'block';
@@ -80,21 +81,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const response = await chrome.runtime.sendMessage({ action: 'sendRequest', url, method, auth, });
       loadingDiv.style.display = 'none';
+      copyButton.style.display = 'flex';
+
       if (response.result == undefined)
       {
-        resultDiv.style.color = 'ed';
+        resultDiv.style.color = 'red';
+        copyButton.style.display = 'none';
         resultDiv.innerText = `Error: ${response.result}`;
-        const copyBtn = document.createElement('button');
-        copyBtn.className = 'copy-btn';
-        copyBtn.title = 'Copiar contenido';
-        copyBtn.innerHTML = '<i class="fas fa-copy"></i>';
-        resultDiv.appendChild(copyBtn);
-
-        copyBtn.addEventListener('click', () => {
-          const textToCopy = resultDiv.textContent.trim();
-          navigator.clipboard.writeText(textToCopy);
-          alert('Contenido copiado al portapapeles!');
-        });
       }
       else
       {
@@ -154,5 +147,4 @@ copyBtn.addEventListener('click', () => {
   const resultDiv = document.getElementById('result');
   const textToCopy = resultDiv.textContent.trim();
   navigator.clipboard.writeText(textToCopy);
-  alert('Contenido copiado al portapapeles!');
 });
