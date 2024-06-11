@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>API Navigator Test</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="popup.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  </head>
+  <body>
+    <h1>API Navigator Test</h1>
+    <form>
+      <div class="container">
+        <div class="inner-container">
+          <label for="method">Método:</label>
+          <select id="method" name="method">
+            <option value="GET">GET</option>
+            <option value="POST">POST</option>
+            <option value="PUT">PUT</option>
+            <option value="DELETE">DELETE</option>
+            <option value="PATCH">PATCH</option>
+            <option value="HEAD">HEAD</option>
+            <option value="OPTIONS">OPTIONS</option>
+          </select>
+        </div>
+        <div class="inner-container">
+          <label for="url">URL:</label>
+          <input type="text" id="url" name="url" />
+        </div>
+        <div class="inner-container">
+          <label for="auth">Autenticación:</label>
+          <input type="text" id="auth" name="auth" />
+        </div>
+        <button class="button" id="send-btn">Enviar</button>
+        
+      </div>
+      <div id="loading" style="display: none;">
+        <div class="loader"></div>
+      </div>
+    </form>
+    <div id="result"></div>
+    <button class="copy-btn" title="Copiar contenido">
+      <i class="fas fa-copy"></i>
+    </button>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

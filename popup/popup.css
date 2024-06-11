@@ -1,0 +1,268 @@
+body {
+  font-family: Arial, sans-serif;
+  width: 400px;
+  text-align: center;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+input[type="text"],
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+button[type="button"] {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button[type="button"]:hover {
+  background-color: #3e8e41;
+}
+
+#result {
+  text-align: start;
+  margin-top: 10px;
+  max-height: 255px;
+  overflow-y: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.inner-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
+
+label {
+  margin-right: 10px;
+}
+
+/*Estilos para boton Enviar*/
+.button {
+  &.alternative {
+    --color-hover: #2b3044;
+    --background: #362a89;
+    --hover-back: #6d58ff;
+    --hover-front: #f6f8ff;
+  }
+  &.simple {
+    --background: #275efe;
+    --background-hover: #1749db;
+  }
+}
+
+.button {
+  --color: #fff;
+  --color-hover: var(--color);
+  --background: #2b3044;
+  --background-hover: var(--background);
+  --hover-back: #6d58ff;
+  --hover-front: #5c86ff;
+  padding: 8px 28px;
+  border-radius: 20px;
+  line-height: 24px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border: none;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  color: var(--c, var(--color));
+  background: var(--b, var(--background));
+  transition: color 0.2s linear var(--c-d, 0.2s),
+    background 0.3s linear var(--b-d, 0.2s);
+  display: block;
+  margin: 0 auto;
+  &:not(.simple) {
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      background: var(--pb, var(--hover-back));
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 200%;
+      border-radius: var(--br, 40%);
+      transform: translateY(var(--y, 50%));
+      transition: transform var(--d, 0.4s) ease-in var(--d-d, 0s),
+        border-radius 0.5s ease var(--br-d, 0.08s);
+    }
+    &:after {
+      --pb: var(--hover-front);
+      --d: 0.44s;
+    }
+  }
+
+  div {
+    z-index: 1;
+    position: relative;
+    display: flex;
+    span {
+      display: block;
+      backface-visibility: hidden;
+      transform: translateZ(0);
+      animation: var(--name, none) 0.7s linear forwards 0.18s;
+    }
+  }
+  &.in {
+    --name: move;
+    &:not(.out) {
+      --c: var(--color-hover);
+      --b: var(--background-hover);
+      &:before,
+      &:after {
+        --y: 0;
+        --br: 5%;
+      }
+      &:after {
+        --br: 10%;
+        --d-d: 0.02s;
+      }
+    }
+    &.out {
+      --name: move-out;
+      &:before {
+        --d-d: 0.06s;
+      }
+    }
+  }
+}
+
+@keyframes move {
+  30%,
+  36% {
+    transform: translateY(calc(-6px * var(--move))) translateZ(0)
+      rotate(calc(-13deg * var(--rotate) * var(--part)));
+  }
+  50% {
+    transform: translateY(calc(3px * var(--move))) translateZ(0)
+      rotate(calc(6deg * var(--rotate) * var(--part)));
+  }
+  70% {
+    transform: translateY(calc(-2px * var(--move))) translateZ(0)
+      rotate(calc(-3deg * var(--rotate) * var(--part)));
+  }
+}
+
+@keyframes move-out {
+  30%,
+  36% {
+    transform: translateY(calc(6px * var(--move))) translateZ(0)
+      rotate(calc(13deg * var(--rotate) * var(--part)));
+  }
+  50% {
+    transform: translateY(calc(-3px * var(--move))) translateZ(0)
+      rotate(calc(-6deg * var(--rotate) * var(--part)));
+  }
+  70% {
+    transform: translateY(calc(2px * var(--move))) translateZ(0)
+      rotate(calc(3deg * var(--rotate) * var(--part)));
+  }
+}
+
+html {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: inherit;
+  &:before,
+  &:after {
+    box-sizing: inherit;
+  }
+}
+
+/* Animacion de carga */
+#loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* fondo opaco */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  width: 90px;
+  height: 14px;
+  box-shadow: 0 3px 0 #fff;
+  position: relative;
+  clip-path: inset(-40px 0 -5px)
+}
+.loader:before {
+  content: "";
+  position: absolute;
+  inset: auto calc(50% - 17px) 0;
+  height: 50px;
+  --g:no-repeat linear-gradient(#ccc 0 0);
+  background: var(--g),var(--g),var(--g),var(--g);
+  background-size: 16px 14px;
+  animation:
+    l7-1 2s infinite linear,
+    l7-2 2s infinite linear;
+}
+@keyframes l7-1 {
+  0%,
+  100%  {background-position: 0 -50px,100% -50px}
+  17.5% {background-position: 0 100%,100% -50px,0 -50px,100% -50px}
+  35%   {background-position: 0 100%,100% 100% ,0 -50px,100% -50px}
+  52.5% {background-position: 0 100%,100% 100% ,0 calc(100% - 16px),100% -50px}
+  70%,
+  98%  {background-position: 0 100%,100% 100% ,0 calc(100% - 16px),100% calc(100% - 16px)}
+}
+@keyframes l7-2 {
+  0%,70% {transform:translate(0)}
+  100%  {transform:translate(200%)}
+}
+
+/* Botón con un icono de copiar */
+/* .copy-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.copy-btn:hover {
+  background-color: #f0f0f0;
+}
+
+.copy-btn i {
+  font-size: 16px;
+} */

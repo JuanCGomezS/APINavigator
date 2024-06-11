@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "API Navigator Test",
+  "version": "1.0",
+  "description": "Una extensión de Chrome que sirve para testear tus endpoints",
+  "icons": {
+    "16": "icons/Api_Navigator.png",
+    "48": "icons/API_Navigator.jpg",
+    "128": "icons/Api_Navigator.png"
+  },
+  "action": {
+    "default_icon": "icons/Api_Navigator.png",
+    "default_popup": "popup/popup.html"
+  },
+  "permissions": ["activeTab"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "service-worker.js"
+  }
+}
